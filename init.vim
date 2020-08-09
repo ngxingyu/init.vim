@@ -14,7 +14,7 @@ if !filereadable(vimplug_exists)
 
   autocmd VimEnter * PlugInstall
 endif
-
+let g:python3_host_prog = '~/miniconda3/envs/DataScience/bin/python3'
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 
@@ -72,12 +72,13 @@ let g:ale_linters = {
     \ 'c': ['clang']
 \}
 
+"require'nvim_lsp'.pyls.setup{
+"   cmd = { "dotnet", "exec", "/home/ngxingyu/python-language-server/output/bin/Debug/Microsoft.Python.languageServer.dll" };
+ "   }
 
 lua << END
     require'nvim_lsp'.tsserver.setup{}
-    require'nvim_lsp'.pyls_ms.setup{
-    cmd = { "dotnet", "exec", "/home/ngxingyu/python-language-server/output/bin/Debug/Microsoft.Python.languageServer.dll" };
-    }
+    require'nvim_lsp'.pyls.setup{}
     require'nvim_lsp'.leanls.setup{}
     require'nvim_lsp'.kotlin_language_server.setup{
     settings={kotlin={languageServer={path="/home/ngxingyu/kotlin-language-server/server/build/install/server/bin/"}}}}
