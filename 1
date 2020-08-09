@@ -15,14 +15,49 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+if has('gui_running')
+  set guifont=Input
+endif
+
 let g:python3_host_prog = '~/miniconda3/envs/DataScience/bin/python3'
-scriptencoding utf-8
-source ~/.config/nvim/plugins.vim
+" Required:
+call plug#begin(expand('~/.config/nvim/plugged'))
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'jremmen/vim-ripgrep'
+Plug 'neovim/nvim-lsp'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-lsp'
+Plug 'bfredl/nvim-ipy'
+Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'davidhalter/jedi-vim'
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} "
+Plug 'leanprover/lean.vim', {'for': 'lean'}
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'jpalardy/vim-slime'
+Plug 'cjrh/vim-conda', {'for': 'python'}
+Plug 'junegunn/fzf'
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdcommenter'
+Plug 'alvan/vim-closetag'
+Plug 'brooth/far.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'dense-analysis/ale'
+
+call plug#end()
+
 syntax on
 colorscheme molokai
-set mouse=nvirh
-set mousemodel=popup_setpos
-set nonu rnu
+set nonu
+set rnu
 set splitright
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold
@@ -30,24 +65,10 @@ highlight Normal gui=none
 highlight NonText guibg=none
 highlight Normal guibg=NONE ctermbg=NONE
 highlight LineNr guibg=NONE ctermbg=NONE
-set cursorline
-set foldmethod=syntax
-set foldlevelstart=99
-set clipboard=unnamedplus
+set autoindent
+set hlsearch
+set foldmethod=indent
 set termguicolors
-set conceallevel=1
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd showmode
-set list listchars=trail:»,tab:»-
-set fillchars+=vert:\ 
-set wrap breakindent
-set encoding=utf-8
-set title
-set winheight=10
-set winwidth=80
-set winminheight=1
-set winminwidth=5
 
 let g:ale_linters = {
     \ 'python': ['pylint'],
@@ -55,6 +76,10 @@ let g:ale_linters = {
     \ 'cpp': ['clang'],
     \ 'c': ['clang']
 \}
+
+"require'nvim_lsp'.pyls.setup{
+"   cmd = { "dotnet", "exec", "/home/ngxingyu/python-language-server/output/bin/Debug/Microsoft.Python.languageServer.dll" };
+ "   }
 
 lua << END
     require'nvim_lsp'.tsserver.setup{}
@@ -84,7 +109,6 @@ let g:slime_target = "neovim"
 let g:slime_paste_file = "$HOME/.slime_paste"
 let g:slime_cell_delimiter = "#%%"
 let g:slime_python_ipython = 1
-let g:python3_host_prog = '~/miniconda3/envs/DataScience/bin/python3'
 
 let g:rg_command = 'rg --vimgrep -S'
 let g:tex_flavor='latex'
@@ -93,7 +117,7 @@ let g:vimtex_quickfix_mode=0
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
 let g:tex_subscripts= "[0-9aehijklmnoprstuvx,+-/().]"
-
+set conceallevel=1
 "let g:tex_conceal="abdgm"
 au FileType tex syn region texMathZoneZ matchgroup=texStatement start="\\eqn{"  start="\\eqns{" start="\\eqna{" start="\\eqnas{"    matchgroup=texStatement end="}" end="%stopzone\>"   contains=@texMathZoneGroup
 
@@ -104,6 +128,15 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 
 filetype plugin indent on
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set incsearch ignorecase smartcase hlsearch
+set ruler laststatus=2 showcmd showmode
+set list listchars=trail:»,tab:»-
+set fillchars+=vert:\ 
+set wrap breakindent
+set encoding=utf-8
+set number
+set title
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '↠'
 let g:NERDTreeDirArrowCollapsible = '↡'
@@ -173,7 +206,6 @@ function! WinMove(key)
 endfunction
 
 
-map <C-q> :q!<cr>
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
