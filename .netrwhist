@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/ngxingyu/Code/DataScience/XY/kaggle/ProductTranslation'
+let g:netrw_dirhist_5='/home/ngxingyu/Downloads/Guillem/efficientdet/utils'
+let g:netrw_dirhist_4='/home/ngxingyu/Downloads/Guillem/efficientdet'
+let g:netrw_dirhist_3='/home/ngxingyu/Downloads/Guillem'
+let g:netrw_dirhist_2='/home/ngxingyu/Downloads/EfficientDet-master'
+let g:netrw_dirhist_1='/home/ngxingyu/Downloads/ag_news_csv'
