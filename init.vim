@@ -132,9 +132,14 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
+
+autocmd FileType c nnoremap <buffer> <F5> :w<CR>:!gcc -o %< % && ./%< <CR>
+autocmd FileType cpp nnoremap <buffer> <F5> :w<CR>:!g++ -o %< % && ./%< <CR>
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
@@ -146,7 +151,7 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 map <Space> <Leader>
 nmap <F6> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>f :FZF<cr>
-nnoremap <silent> <leader>F :FZF ~<cr>
+nnoremap <silent> <leader>F :FZF ~
 nnoremap <leader>bn :echo bufnr('%')<Enter>
 nnoremap <leader>jn :echo b:terminal_job_id<Enter>
 "nnoremap <C-J> <C-W><C-J>

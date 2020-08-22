@@ -22,12 +22,24 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'jpalardy/vim-slime'
 Plug 'cjrh/vim-conda', {'for': 'python'}
 Plug 'junegunn/fzf'
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align' 
 Plug 'scrooloose/nerdcommenter'
 Plug 'alvan/vim-closetag'
 Plug 'brooth/far.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'ilyachur/cmake4vim'
+Plug 'mfulz/cscope.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
 
 call plug#end()
 
